@@ -18,6 +18,9 @@ function click_filter_element (event) {
     NO RETURN VALUE
 
   */
+
+      event.target.classList.toggle("selected");
+      // lägg till mer senare??
   
 }
 
