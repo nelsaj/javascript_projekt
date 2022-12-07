@@ -99,34 +99,55 @@ function toggle_cities (event) {
   //create_countries_cities_filters
     /*
       ARGUMENTS
+        den här funktionen tar inte emot några argument.
   
       SIDE-EFFECTS
-        
+        för varje objekt i COUNTRIES, anropar create_country.
   
       RETURN VALUE
-        
+        funktionen returnerar ingenting.
     */
   
   //create_country
     /*
       ARGUMENTS
+        country: objekt som inkluderar följande nycklar:
+          id: ett nummer
+          namn: en sträng
+          (i detta fallet används COUNTRIES från database.js)
   
       SIDE-EFFECTS
+        skapar och appendar en div under parent "#country_filter > ul" med klasserna:
+        "country" och "filter_container"
+        och id:
+        "country_${countrys id}".
+        
+        I div:en skapas en h1 med countrys namn och en ul med klassen "filter_list".
+
+        för varje objekt i CITIES som har samma id som country, 
+        anropar create_city med argument cities (en array med objekt i CITIES som har samma id som country)
   
       RETURN VALUE
-        
+        funktionen returnerar ingenting.
     */
   
   //create_city
     /*
       ARGUMENTS
-
+        city: en array
+        (i detta fallet används "cities" från funktionen "create_country")
   
       SIDE-EFFECTS
-        
+        skapar och appendar en li under parent "#country_${citys countryID} > ul" med klassen:
+        "selected"
+        och id:
+        id av city
+        och textContent:
+        namnet på city:n.
+
   
       RETURN VALUE
-        
+        funktionen returnerar ingenting.
     */
 
 function create_countries_cities_filters () {
