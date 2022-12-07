@@ -149,40 +149,35 @@ function create_countries_cities_filters () {
 // ABSTRACT AND WRITE SPECIFICATION
 //    As you can see, all three functions below do basically the same thing.
 //    Abstract them to one function, and write the specification of that function.
-function create_levels_filter () {
-  function create_level (level) {
+
+function create_filter (){
+  function create_options1 (filter) {
     const dom = create_filter_element({
       parent: document.querySelector("#level_filter > ul"),
       class: "selected",
-      textContent: level.name,
+      textContent: filter.name,
     });
-    dom.dataset.id = level.id;
+    dom.dataset.id = filter.id;
   }
-  array_each(LEVELS, create_level);
-}
-// Create Subjects Filter
-function create_subjects_filter () {
-  function create_subject (subject) {
+  function create_options2 (filter) {
     const dom = create_filter_element({
       parent: document.querySelector("#subject_filter > ul"),
       class: "selected",
-      textContent: subject.name,
+      textContent: filter.name,
     });
-    dom.dataset.id = subject.id;
+    dom.dataset.id = filter.id;
   }
-  array_each(SUBJECTS, create_subject);
-}
-// Create Search Field
-function create_language_filter () {
-  function create_element (data) {
+  function create_options3 (filter) {
     const dom = create_filter_element({
       parent: document.querySelector("#language_filter > ul"),
       class: "selected",
-      textContent: data.name,
+      textContent: filter.name,
     });
-    dom.dataset.id = data.id;
+    dom.dataset.id = filter.id;
   }
-  array_each(LANGUAGES, create_element);
+  array_each(LEVELS, create_options1);
+  array_each(SUBJECTS, create_options2);
+  array_each(LANGUAGES, create_options3);
 }
 
 
