@@ -151,33 +151,30 @@ function create_countries_cities_filters () {
 //    Abstract them to one function, and write the specification of that function.
 
 function create_filter (){
-  function create_options1 (filter) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#level_filter > ul"),
-      class: "selected",
-      textContent: filter.name,
-    });
-    dom.dataset.id = filter.id;
+  /*
+    ARGUMENT
+      den här funktionen tar inte emot några argument
+
+    SIDE EFFECTS
+      
+
+    NO RETURN VALUE
+
+  */
+
+  function create_options (array, parent) {
+    for (const filter of array) {
+        const dom = create_filter_element({
+        parent: document.querySelector(`#${parent}_filter > ul`),
+        class: "selected",
+        textContent: filter.name
+      });
+      dom.dataset.id = filter.id;
+    }
   }
-  function create_options2 (filter) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#subject_filter > ul"),
-      class: "selected",
-      textContent: filter.name,
-    });
-    dom.dataset.id = filter.id;
-  }
-  function create_options3 (filter) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#language_filter > ul"),
-      class: "selected",
-      textContent: filter.name,
-    });
-    dom.dataset.id = filter.id;
-  }
-  array_each(LEVELS, create_options1);
-  array_each(SUBJECTS, create_options2);
-  array_each(LANGUAGES, create_options3);
+  create_options(LEVELS, level);
+  create_options(SUBJECTS, subject);
+  create_options(LANGUAGES, language);
 }
 
 
