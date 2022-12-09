@@ -154,9 +154,14 @@ function create_filter (){
   /*
     ARGUMENT
       den här funktionen tar inte emot några argument
+      (funktionen "create_options" som finns inuti funktionen tar dock emot en array 
+      och en sträng)
 
     SIDE EFFECTS
-      
+      funktionen skapar tre olika filter, "level", "subjects" och "language" som li
+      element. den loopar igenom en array för varje filter och fyller dem med klassen
+      "selected", textContent blir namnet av "filter" och deras förälder beror på hur
+      "parent" anropas.
 
     NO RETURN VALUE
 
@@ -172,9 +177,9 @@ function create_filter (){
       dom.dataset.id = filter.id;
     }
   }
-  create_options(LEVELS, level);
-  create_options(SUBJECTS, subject);
-  create_options(LANGUAGES, language);
+  create_options(LEVELS, "level");
+  create_options(SUBJECTS, "subject");
+  create_options(LANGUAGES, "language");
 }
 
 
