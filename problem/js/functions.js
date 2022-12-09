@@ -208,8 +208,15 @@ function create_programme (programme) {
 
   */  
 
-}
+    const mainDiv = createElement("div");
+    mainDiv.classList.add("programme");
+    document.querySelector("#programmes > ul").append(mainDiv);
 
+    const universityInfo = createElement("div").classList.add("").innerHTML = `
+    <p><b>${programme.name}</b></p>`;
+    document.querySelector(".programme").append(universityInfo);
+
+}
 
 // G
 // CODE according to the specification
