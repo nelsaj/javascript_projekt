@@ -239,6 +239,26 @@ function update_programmes () {
 
 // Optional VG: Which parts of the function's code could be abstracted?
 //              Implement it
+
+/*
+
+    ARGUMENT
+    den här funktionen tar inte emot några argument.
+
+    SIDE-EFFECTS
+    funktionen söker igenom alla "filter" efter vilka element som har klassen 
+    "selected" och placerar de objekt från samtliga arrayer i database.js som har samma id
+    som "selected" elementen, i en array. 
+    samt gör sökfunktionen interagerbar genom att den responderar på input från användaren.
+
+    RETURN VALUE
+    en array med objekt från array "PROGRAMMES" som har samma id som elementen med klassen 
+    "selected" och (om sökfunktionen är ifylld) inkluderar strängen från input.
+
+    om inga program uppfyller kraven returnerar funktionen en tom array.
+
+*/
+
 function read_filters () {
   
   const city_selected_dom = document.querySelectorAll("#country_filter li.selected");
