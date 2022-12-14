@@ -209,39 +209,33 @@ function create_programme (programme) {
   */  
     const mainDiv = document.createElement("div");
     mainDiv.classList.add("programme");
+
     document.querySelector("#programmes > ul").append(mainDiv);
 
     const uniInfo = document.createElement("div");
-    uniInfo.classList.add("uniInfo");
     uniInfo.innerHTML = 
+    // det här är bara ett template just nu
       `
       <p><b>${programme.name}</b></p>
+      <p>${UNIVERSITIES[0].name}</p>
+      <p>${CITIES[0].name}, ${COUNTRIES[0].name}</p>
+      <p>${LEVELS[0].name}, ${SUBJECTS[0].name}, ${LANGUAGES[0].name}</p>
       `
     const seeMore = document.createElement("div");
     seeMore.classList.add("more_info");
     const sunIndex = document.createElement("div");
     sunIndex.classList.add("bottom_programme");
+    sunIndex.innerHTML = 
+    // det här är bara ett template just nu
+      `
+      <p>${CITIES[0].name}, sun-index: ${CITIES[0].sun}</p>
+      `
 
     const programmeDom = document.querySelectorAll(".programme");
-    const uniInfoDom = document.querySelectorAll(".uniInfo");
     for (const iterator of programmeDom) {
       iterator.append(uniInfo);
       iterator.append(seeMore);
       iterator.append(sunIndex);
-    }
-
-    for (let i = 0; i < UNIVERSITIES.length; i++) {
-      if (UNIVERSITIES[i].id === programme.id){
-       uniInfo.innerHTML = `
-       <p><b>${programme.name}</b></p>
-       <p>${UNIVERSITIES[i].name}</p>
-       `
-      }
-      if (UNIVERSITIES[i].cityID === CITIES.id){
-        uniInfo.innerHTML = `
-        <p>${UNIVERSITIES[i].name}</p>
-        `
-      }
     }
 }
 array_each(PROGRAMMES, create_programme)
