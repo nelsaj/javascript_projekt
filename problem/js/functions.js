@@ -207,16 +207,44 @@ function create_programme (programme) {
     NO RETURN VALUE
 
   */  
-
-    const mainDiv = createElement("div");
+    const mainDiv = document.createElement("div");
     mainDiv.classList.add("programme");
     document.querySelector("#programmes > ul").append(mainDiv);
 
-    const universityInfo = createElement("div").classList.add("").innerHTML = `
-    <p><b>${programme.name}</b></p>`;
-    document.querySelector(".programme").append(universityInfo);
+    const uniInfo = document.createElement("div");
+    uniInfo.classList.add("uniInfo");
+    uniInfo.innerHTML = 
+      `
+      <p><b>${programme.name}</b></p>
+      `
+    const seeMore = document.createElement("div");
+    seeMore.classList.add("more_info");
+    const sunIndex = document.createElement("div");
+    sunIndex.classList.add("bottom_programme");
 
+    const programmeDom = document.querySelectorAll(".programme");
+    const uniInfoDom = document.querySelectorAll(".uniInfo");
+    for (const iterator of programmeDom) {
+      iterator.append(uniInfo);
+      iterator.append(seeMore);
+      iterator.append(sunIndex);
+    }
+
+    for (let i = 0; i < UNIVERSITIES.length; i++) {
+      if (UNIVERSITIES[i].id === programme.id){
+       uniInfo.innerHTML = `
+       <p><b>${programme.name}</b></p>
+       <p>${UNIVERSITIES[i].name}</p>
+       `
+      }
+      if (UNIVERSITIES[i].cityID === CITIES.id){
+        uniInfo.innerHTML = `
+        <p>${UNIVERSITIES[i].name}</p>
+        `
+      }
+    }
 }
+array_each(PROGRAMMES, create_programme)
 
 // G
 // CODE according to the specification
