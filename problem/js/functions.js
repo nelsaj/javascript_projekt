@@ -247,8 +247,8 @@ function update_programmes () {
 
     SIDE-EFFECTS
     funktionen söker igenom alla "filter" efter vilka element som har klassen 
-    "selected" och placerar de objekt från samtliga arrayer i database.js som har samma id
-    som "selected" elementen, i en array. 
+    "selected" och jämför arrayerna från database.js för att kontrollera att de 
+    hänger ihop.
     samt gör sökfunktionen interagerbar genom att den responderar på input från användaren.
 
     RETURN VALUE
