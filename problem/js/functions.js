@@ -213,30 +213,56 @@ function create_programme (programme) {
     document.querySelector("#programmes > ul").append(mainDiv);
 
     const uniInfo = document.createElement("div");
-    uniInfo.innerHTML = 
-    // det här är bara ett template just nu
-      `
-      <p><b>${programme.name}</b></p>
-      <p>${UNIVERSITIES[0].name}</p>
-      <p>${CITIES[0].name}, ${COUNTRIES[0].name}</p>
-      <p>${LEVELS[0].name}, ${SUBJECTS[0].name}, ${LANGUAGES[0].name}</p>
-      `
     const seeMore = document.createElement("div");
     seeMore.classList.add("more_info");
     const sunIndex = document.createElement("div");
     sunIndex.classList.add("bottom_programme");
-    sunIndex.innerHTML = 
-    // det här är bara ett template just nu
-      `
-      <p>${CITIES[0].name}, sun-index: ${CITIES[0].sun}</p>
-      `
 
     const programmeDom = document.querySelectorAll(".programme");
-    for (const iterator of programmeDom) {
-      iterator.append(uniInfo);
-      iterator.append(seeMore);
-      iterator.append(sunIndex);
+    for (const domElement of programmeDom) {
+      domElement.append(uniInfo);
+      domElement.append(seeMore);
+      domElement.append(sunIndex);
     }
+    
+  // det här ser absolut inte bra ut men det funkar
+  // försök gärna komma på en bättre lösning senare
+    for (let i = 0; i < UNIVERSITIES.length; i++) {
+      if (UNIVERSITIES[i].id === programme.universityID) {
+          for (let ii = 0; ii < CITIES.length; ii++) {
+            if (CITIES[ii].id === UNIVERSITIES[i].cityID) {
+              for (let iii = 0; iii < COUNTRIES.length; iii++) {
+                if (COUNTRIES[iii].id === CITIES[ii].countryID) {
+                  for (let iiii = 0; iiii < LEVELS.length; iiii++) {
+                    if (LEVELS[iiii].id === programme.levelID){
+                      for (let iiiii = 0; iiiii < SUBJECTS.length; iiiii++) {
+                        if (SUBJECTS[iiiii].id === programme.subjectID) {
+                          for (let iiiiii = 0; iiiiii < LANGUAGES.length; iiiiii++) {
+                            if (LANGUAGES[iiiiii].id === programme.languageID) {
+                              uniInfo.innerHTML = 
+                              `
+                              <p><b>${programme.name}</b></p>
+                              <p>${UNIVERSITIES[i].name}</p>
+                              <p>${CITIES[ii].name}, ${COUNTRIES[iii].name}</p>
+                              <p>${LEVELS[iiii].name}, ${SUBJECTS[iiiii].name}, ${LANGUAGES[iiiiii].name}</p>
+                              `
+            
+                              sunIndex.innerHTML = 
+                              `
+                              <p>${CITIES[ii].name}, sun-index: ${CITIES[ii].sun}</p>
+                              `
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        } 
+      }
 }
 array_each(PROGRAMMES, create_programme)
 
