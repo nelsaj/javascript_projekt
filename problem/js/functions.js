@@ -21,9 +21,7 @@ function click_filter_element (event) {
 
       event.target.classList.toggle("selected");
       // lägg till mer senare??
-      if (event.target.classList.value === "selected") {
         update_programmes();
-      }
 }
 
 
