@@ -81,9 +81,15 @@ function add_group_toggling (filter_container_dom) {
     NO RETURN VALUE
 
   */
-  
-}
 
+      filter_container_dom.addEventListener("click", toggleGroups)
+  
+    function toggleGroups(event) {
+      for (let i = 0; i < event.currentTarget.children.length; i++) {
+        event.currentTarget.children[i].classList.toggle("selected");
+      }
+    }
+}
 
 // VG
 // CODE according to specifications
