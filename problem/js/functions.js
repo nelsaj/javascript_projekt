@@ -311,6 +311,18 @@ function update_programmes () {
 
   */
 
+    document.querySelector("#programmes > ul").innerHTML = "";
+
+    for (let i = 0; i < read_filters().length; i++) {
+      create_programme(read_filters()[i]);
+    }
+
+    if (read_filters ().length !== 0){
+        document.querySelector("#programmes > p").textContent = "";
+    } else {
+      document.querySelector("#programmes > p").textContent = "Inga program upfyller nuvarande filter."
+    }
+
 }
 
 
