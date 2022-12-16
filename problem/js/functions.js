@@ -251,6 +251,8 @@ function create_programme (programme) {
                               `
                               <p>${CITIES[ii].name}, sun-index: ${CITIES[ii].sun}</p>
                               `
+
+                              mainDiv.style.backgroundImage = `url(media/geo_images/${array_random_element (CITIES[ii].imagesNormal)})`
                             }
                           }
                         }
@@ -264,7 +266,6 @@ function create_programme (programme) {
         } 
       }
 }
-array_each(PROGRAMMES, create_programme)
 
 // G
 // CODE according to the specification
