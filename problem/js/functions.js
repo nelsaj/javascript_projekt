@@ -284,10 +284,17 @@ function update_programmes () {
 
   */
 
-      let readFilters = read_filters (); 
+      document.querySelector("body").addEventListener("click", teest);
+      function teest (event){
+        console.log(read_filters ());
+      }
+      // den här delen ^^^ är bara för att hålla koll på read_filters
+      // den gör inget för själva sidan
 
-      for (const filter of readFilters) {
-        create_programme(filter)
+      array_each(read_filters (), create_programme)
+
+      if (read_filters ().length !== 0){
+        document.querySelector("#programmes > p").textContent = "";
       }
 
 }
