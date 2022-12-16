@@ -130,6 +130,7 @@ function toggle_cities (event) {
       } 
     }
 
+    update_programmes ()
 }
 
 
