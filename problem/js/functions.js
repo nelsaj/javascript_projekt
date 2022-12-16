@@ -292,18 +292,17 @@ function update_programmes () {
 
   */
 
-      document.querySelector("body").addEventListener("click", teest);
-      function teest (event){
-        console.log(read_filters ());
-      }
-      // den här delen ^^^ är bara för att hålla koll på read_filters
-      // den gör inget för själva sidan
+    document.querySelector("#programmes > ul").innerHTML = "";
 
-      array_each(read_filters (), create_programme)
+    for (let i = 0; i < read_filters().length; i++) {
+      create_programme(read_filters()[i]);
+    }
 
-      if (read_filters ().length !== 0){
+    if (read_filters ().length !== 0){
         document.querySelector("#programmes > p").textContent = "";
-      }
+    } else {
+      document.querySelector("#programmes > p").textContent = "Inga program upfyller nuvarande filter."
+    }
 
 }
 
