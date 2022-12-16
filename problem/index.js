@@ -33,4 +33,5 @@ array_each(document.querySelectorAll(".filter_container > ul"), add_group_toggli
 
 // VG
 // Add Interaction of button toggle-all-cities
+document.querySelector("#country_filter > button").addEventListener("click", toggle_cities);
 
