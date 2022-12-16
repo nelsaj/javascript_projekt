@@ -111,6 +111,23 @@ function toggle_cities (event) {
 
   */
 
+  const madrid = document.querySelector("#country_0 > ul").children[0];
+  const everyCountry = document.querySelectorAll(".country > ul");
+
+    if (madrid.classList.value === "selected"){
+      for (let i = 0; i < everyCountry.length; i++) {
+        for (let ii = 0; ii < everyCountry[i].children.length; ii++) {
+          document.querySelectorAll(".country > ul")[i].children[ii].classList.remove("selected");
+        }
+      } 
+    } else {
+      for (let i = 0; i < everyCountry.length; i++) {
+        for (let ii = 0; ii < everyCountry[i].children.length; ii++) {
+          document.querySelectorAll(".country > ul")[i].children[ii].classList.add("selected");
+        }
+      } 
+    }
+
 }
 
 
