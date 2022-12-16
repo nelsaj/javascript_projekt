@@ -86,7 +86,7 @@ function add_group_toggling (filter_container_dom) {
   
     function toggleGroups(event) {
       for (let i = 0; i < event.currentTarget.children.length; i++) {
-        event.currentTarget.children[i].classList.toggle("selected");
+        event.target.children[i].classList.toggle("selected");
       }
     }
 }
