@@ -229,6 +229,12 @@ function update_programmes () {
 
   */
 
+      let readFilters = read_filters (); 
+
+      for (const filter of readFilters) {
+        create_programme(filter)
+      }
+
 }
 
 
