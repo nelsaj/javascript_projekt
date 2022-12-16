@@ -91,6 +91,8 @@ function add_group_toggling (filter_container_dom) {
         }
       }
     }
+
+    update_programmes ()
 }
 
 // VG
