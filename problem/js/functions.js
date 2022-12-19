@@ -313,16 +313,25 @@ function update_programmes () {
 
   */
 
+    // reset
     document.querySelector("#programmes > ul").innerHTML = "";
 
+    // add
     for (let i = 0; i < read_filters().length; i++) {
       create_programme(read_filters()[i]);
     }
 
+    // "Inga program upfyller nuvarande filter."
     if (read_filters ().length !== 0){
         document.querySelector("#programmes > p").textContent = "";
     } else {
       document.querySelector("#programmes > p").textContent = "Inga program upfyller nuvarande filter."
+    }
+
+    // random image
+    const topImages = document.querySelectorAll("#top_images > div");
+    for (const div of topImages) {
+      div.style.backgroundImage = `url(media/geo_images/${array_random_element (array_random_element (COUNTRIES).imagesNormal)})`
     }
 
 }
