@@ -90,9 +90,9 @@ function add_group_toggling (filter_container_dom) {
           event.target.children[i].classList.toggle("selected");
         }
       }
+      update_programmes ()
     }
 
-    update_programmes ()
 }
 
 // VG
