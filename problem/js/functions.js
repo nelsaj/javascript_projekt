@@ -241,14 +241,21 @@ function create_programme (programme) {
     NO RETURN VALUE
 
   */  
+
+    // skapa element
     const mainDiv = document.createElement("div");
     mainDiv.classList.add("programme");
 
     document.querySelector("#programmes > ul").append(mainDiv);
 
     const uniInfo = document.createElement("div");
+    
     const seeMore = document.createElement("div");
     seeMore.classList.add("more_info");
+    const extraInfo = document.createElement("div");
+    extraInfo.classList.add("extra_info");
+    seeMore.append(extraInfo);
+    
     const sunIndex = document.createElement("div");
     sunIndex.classList.add("bottom_programme");
 
@@ -258,36 +265,49 @@ function create_programme (programme) {
       domElement.append(seeMore);
       domElement.append(sunIndex);
     }
+
+    // see more funktionalitet
+    seeMore.addEventListener("click", seeLess);
+    function seeLess (event) {
+      mainDiv.classList.toggle("show_more");
+
+      extraInfo.innerHTML = `
+      <p>Average entry grade: ${array_average (programme.entryGrades)}</p>
+      <p>Success rate: ${array_average (programme.successRate)}%</p>
+      <p>Exchange ratio: ${programme.exchangeStudents}/${programme.localStudents}</p>
+      `
+    }
     
+  // innehållet i programme boxarna
+
   // det här ser absolut inte bra ut men det funkar
   // försök gärna komma på en bättre lösning senare
-    for (let i = 0; i < UNIVERSITIES.length; i++) {
-      if (UNIVERSITIES[i].id === programme.universityID) {
-          for (let ii = 0; ii < CITIES.length; ii++) {
-            if (CITIES[ii].id === UNIVERSITIES[i].cityID) {
-              for (let iii = 0; iii < COUNTRIES.length; iii++) {
-                if (COUNTRIES[iii].id === CITIES[ii].countryID) {
-                  for (let iiii = 0; iiii < LEVELS.length; iiii++) {
-                    if (LEVELS[iiii].id === programme.levelID){
-                      for (let iiiii = 0; iiiii < SUBJECTS.length; iiiii++) {
-                        if (SUBJECTS[iiiii].id === programme.subjectID) {
-                          for (let iiiiii = 0; iiiiii < LANGUAGES.length; iiiiii++) {
-                            if (LANGUAGES[iiiiii].id === programme.languageID) {
-                              uniInfo.innerHTML = 
-                              `
-                              <p><b>${programme.name}</b></p>
-                              <p>${UNIVERSITIES[i].name}</p>
-                              <p>${CITIES[ii].name}, ${COUNTRIES[iii].name}</p>
-                              <p>${LEVELS[iiii].name}, ${SUBJECTS[iiiii].name}, ${LANGUAGES[iiiiii].name}</p>
-                              `
-            
-                              sunIndex.innerHTML = 
-                              `
-                              <p>${CITIES[ii].name}, sun-index: ${CITIES[ii].sun}</p>
-                              `
-
-                              mainDiv.style.backgroundImage = `url(media/geo_images/${array_random_element (CITIES[ii].imagesNormal)})`
-                            }
+    for (const university of UNIVERSITIES) {
+      if ((university.id === programme.universityID)) {
+        for (const city of CITIES) {
+          if (city.id === university.cityID) {
+            for (const country of COUNTRIES) {
+              if (country.id === city.countryID) {
+                for (const level of LEVELS) {
+                  if (level.id === programme.levelID) {
+                    for (const subject of SUBJECTS) {
+                      if (subject.id === programme.subjectID) {
+                        for (const language of LANGUAGES) {
+                          if (language.id === programme.languageID) {
+                            uniInfo.innerHTML = 
+                            `
+                            <p><b>${programme.name}</b></p>
+                            <p>${university.name}</p>
+                            <p>${city.name}, ${country.name}</p>
+                            <p>${level.name}, ${subject.name}, ${language.name}</p>
+                            `
+                        
+                            sunIndex.innerHTML = 
+                            `
+                            <p>${city.name}, sun-index: ${city.sun} (${percenter(city.sun, 365)}%)</p>
+                            `
+                        
+                            mainDiv.style.backgroundImage = `url(media/geo_images/${array_random_element (city.imagesNormal)})`
                           }
                         }
                       }
@@ -297,9 +317,29 @@ function create_programme (programme) {
               }
             }
           }
-        } 
+        }
       }
+    }
+
+    /*
+    uniInfo.innerHTML = 
+    `
+    <p><b>${programme.name}</b></p>
+    <p>${university.name}</p>
+    <p>${city.name}, ${country.name}</p>
+    <p>${level.name}, ${subject.name}, ${language.name}</p>
+    `
+
+    sunIndex.innerHTML = 
+    `
+    <p>${city.name}, sun-index: ${city.sun} (${percenter(city.sun, 365)}%)</p>
+    `
+
+    mainDiv.style.backgroundImage = `url(media/geo_images/${array_random_element (city.imagesNormal)})`
+    */
 }
+
+array_each(PROGRAMMES, create_programme)
 
 // G
 // CODE according to the specification
