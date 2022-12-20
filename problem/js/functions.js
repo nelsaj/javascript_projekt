@@ -82,12 +82,20 @@ function add_group_toggling (filter_container_dom) {
 
   */
 
-    filter_container_dom.parentElement.addEventListener("click", toggleGroups)
+    filter_container_dom.parentElement.addEventListener("click", toggleGroups);
   
     function toggleGroups(event) {
-        for (let i = 0; i < filter_container_dom.children.length; i++) {
-          event.currentTarget.lastElementChild.children[i].classList.toggle("selected");
+      if (event.target === filter_container_dom.parentElement){
+        if (filter_container_dom.firstChild.classList.value === "selected"){
+          for (let i = 0; i < filter_container_dom.children.length; i++) {
+            filter_container_dom.children[i].classList.remove("selected");
+          }
+        } else {
+          for (let i = 0; i < filter_container_dom.children.length; i++) {
+            filter_container_dom.children[i].classList.add("selected");
+          }
         }
+      }
       update_programmes ()
     }
 
