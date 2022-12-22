@@ -320,26 +320,7 @@ function create_programme (programme) {
         }
       }
     }
-
-    /*
-    uniInfo.innerHTML = 
-    `
-    <p><b>${programme.name}</b></p>
-    <p>${university.name}</p>
-    <p>${city.name}, ${country.name}</p>
-    <p>${level.name}, ${subject.name}, ${language.name}</p>
-    `
-
-    sunIndex.innerHTML = 
-    `
-    <p>${city.name}, sun-index: ${city.sun} (${percenter(city.sun, 365)}%)</p>
-    `
-
-    mainDiv.style.backgroundImage = `url(media/geo_images/${array_random_element (city.imagesNormal)})`
-    */
 }
-
-array_each(PROGRAMMES, create_programme)
 
 // G
 // CODE according to the specification
