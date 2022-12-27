@@ -246,14 +246,16 @@ function update_programmes () {
     den här funktionen tar inte emot några argument.
 
     SIDE-EFFECTS
-    funktionen söker igenom alla "filter" efter vilka element som har klassen 
-    "selected" och jämför arrayerna från database.js för att kontrollera att de 
-    hänger ihop.
+    funktionen söker igenom alla "filter"-knappar efter vilka element som har klassen 
+    "selected" och jämför dess data-id med relevanta arrayer från database.js för att se 
+    vilka array objekt som har motsvarande id och bör inkluderas i en array 
+    (se return value),
     samt gör sökfunktionen interagerbar genom att den responderar på input från användaren.
 
     RETURN VALUE
-    en array med objekt från array "PROGRAMMES" som har samma id som elementen med klassen 
-    "selected" och (om sökfunktionen är ifylld) inkluderar strängen från input.
+    en array med objekt från array "PROGRAMMES" som uppfyller "kraven" av
+    elementen med klassen "selected" ("kraven" beskrivs i side-effects)
+    och (om sökfunktionen är ifylld) inkluderar strängen från input.
 
     om inga program uppfyller kraven returnerar funktionen en tom array.
 
