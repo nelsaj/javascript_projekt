@@ -189,13 +189,14 @@ function create_filter (){
     ARGUMENT
       den här funktionen tar inte emot några argument
       (funktionen "create_options" som finns inuti funktionen tar dock emot en array 
-      och en sträng)
+      och en sträng (ingen kontroll utförs))
 
     SIDE EFFECTS
-      funktionen skapar tre olika filter, "level", "subjects" och "language" som li
-      element. den loopar igenom en array för varje filter och fyller dem med klassen
-      "selected", textContent blir namnet av "filter" och deras förälder beror på hur
-      "parent" anropas.
+      funktionen skapar tre olika filter, "level", "subject" och "language" som li
+      element. den loopar igenom en array för varje filter ("LEVELS", "SUBJECTS" och 
+      "LANGUAGES", respektive) och fyller dem med klassen "selected", 
+      textContent blir namnet av "filter" och dess förälder blir 
+      "#${(level/subject/language beroende på vilken som anropas)}_filter > ul".
 
     NO RETURN VALUE
 
