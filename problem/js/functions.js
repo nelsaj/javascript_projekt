@@ -245,6 +245,7 @@ function create_programme (programme) {
 
   // det här ser absolut inte bra ut men det funkar
   // försök gärna komma på en bättre lösning senare
+  // lite bättre?
     for (const university of UNIVERSITIES) {
       if ((university.id === programme.universityID)) {
         for (const city of CITIES) {
@@ -291,23 +292,6 @@ function create_programme (programme) {
         levelSubjectLanguage.append(document.createElement.textContent = `${language.name}` )
       }
     }
-
-    /*
-    uniInfo.innerHTML = 
-    `
-    <p><b>${programme.name}</b></p>
-    <p>${university.name}</p>
-    <p>${city.name}, ${country.name}</p>
-    <p>${level.name}, ${subject.name}, ${language.name}</p>
-    `
-
-    sunIndex.innerHTML = 
-    `
-    <p>${city.name}, sun-index: ${city.sun} (${percenter(city.sun, 365)}%)</p>
-    `
-
-    mainDiv.style.backgroundImage = `url(media/geo_images/${array_random_element (city.imagesNormal)})`
-    */
 }
 
 array_each(PROGRAMMES, create_programme)
