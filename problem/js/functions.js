@@ -344,9 +344,7 @@ function update_programmes () {
     document.querySelector("#programmes > ul").innerHTML = "";
 
     // add
-    for (let i = 0; i < read_filters().length; i++) {
-      create_programme(read_filters()[i]);
-    }
+    array_each(read_filters(), create_programme);
 
     // "Inga program upfyller nuvarande filter."
     if (read_filters ().length !== 0){
