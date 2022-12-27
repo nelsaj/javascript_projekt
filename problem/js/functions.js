@@ -245,10 +245,10 @@ function create_programme (programme) {
     // skapa element
     const mainDiv = document.createElement("div");
     mainDiv.classList.add("programme");
-
     document.querySelector("#programmes > ul").append(mainDiv);
 
     const uniInfo = document.createElement("div");
+    uniInfo.classList.add("uni_info"); // klassen gör inget men skapar bättre läsbarhet tycker jag
     
     const seeMore = document.createElement("div");
     seeMore.classList.add("more_info");
@@ -259,16 +259,13 @@ function create_programme (programme) {
     const sunIndex = document.createElement("div");
     sunIndex.classList.add("bottom_programme");
 
-    const programmeDom = document.querySelectorAll(".programme");
-    for (const domElement of programmeDom) {
-      domElement.append(uniInfo);
-      domElement.append(seeMore);
-      domElement.append(sunIndex);
-    }
+    mainDiv.append(uniInfo);
+    mainDiv.append(seeMore);
+    mainDiv.append(sunIndex);
 
     // see more funktionalitet
     seeMore.addEventListener("click", seeLess);
-    function seeLess (event) {
+    function seeLess () {
       mainDiv.classList.toggle("show_more");
 
       extraInfo.innerHTML = `
@@ -282,42 +279,51 @@ function create_programme (programme) {
 
   // det här ser absolut inte bra ut men det funkar
   // försök gärna komma på en bättre lösning senare
+  // lite bättre?
     for (const university of UNIVERSITIES) {
       if ((university.id === programme.universityID)) {
         for (const city of CITIES) {
           if (city.id === university.cityID) {
             for (const country of COUNTRIES) {
               if (country.id === city.countryID) {
-                for (const level of LEVELS) {
-                  if (level.id === programme.levelID) {
-                    for (const subject of SUBJECTS) {
-                      if (subject.id === programme.subjectID) {
-                        for (const language of LANGUAGES) {
-                          if (language.id === programme.languageID) {
-                            uniInfo.innerHTML = 
-                            `
-                            <p><b>${programme.name}</b></p>
-                            <p>${university.name}</p>
-                            <p>${city.name}, ${country.name}</p>
-                            <p>${level.name}, ${subject.name}, ${language.name}</p>
-                            `
-                        
-                            sunIndex.innerHTML = 
-                            `
-                            <p>${city.name}, sun-index: ${city.sun} (${percenter(city.sun, 365)}%)</p>
-                            `
-                        
-                            mainDiv.style.backgroundImage = `url(media/geo_images/${array_random_element (city.imagesNormal)})`
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
+                uniInfo.innerHTML = 
+                `
+                <p><b>${programme.name}</b></p>
+                <p>${university.name}</p>
+                <p>${city.name}, ${country.name}</p>
+                `
+            
+                sunIndex.innerHTML = 
+                `
+                <p>${city.name}, sun-index: ${city.sun} (${percenter(city.sun, 365)}%)</p>
+                `
+            
+                mainDiv.style.backgroundImage = `url(media/geo_images/${array_random_element (city.imagesNormal)})`
               }
             }
           }
         }
+      }
+    }
+
+    let levelSubjectLanguage = document.createElement("p");
+    uniInfo.append(levelSubjectLanguage);
+
+    for (const level of LEVELS) {
+      if (level.id === programme.levelID) {
+        levelSubjectLanguage.append(document.createElement.textContent = `${level.name}, `)
+      }
+    }
+
+    for (const subject of SUBJECTS) {
+      if (subject.id === programme.subjectID) {
+        levelSubjectLanguage.append(document.createElement.textContent = `${subject.name}, ` )
+      }
+    }
+
+    for (const language of LANGUAGES) {
+      if (language.id === programme.languageID) {
+        levelSubjectLanguage.append(document.createElement.textContent = `${language.name}` )
       }
     }
 }
