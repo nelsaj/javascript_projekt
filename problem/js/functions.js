@@ -115,12 +115,14 @@ function toggle_cities (event) {
           id: ett nummer
           namn: en sträng
           (i detta fallet används COUNTRIES från database.js)
+        
+        ingen kontroll utförs
   
       SIDE-EFFECTS
         skapar och appendar en div under parent "#country_filter > ul" med klasserna:
         "country" och "filter_container"
         och id:
-        "country_${countrys id}".
+        "country_" + "(country's id)".
         
         I div:en skapas en h1 med countrys namn och en ul med klassen "filter_list".
 
@@ -134,14 +136,16 @@ function toggle_cities (event) {
   //create_city
     /*
       ARGUMENTS
-        city: en array
-        (i detta fallet används "cities" från funktionen "create_country")
+        city: ett objekt
+        (i detta fallet används utvalda objekt från array "cities")
+
+        ingen kontroll utförs
   
       SIDE-EFFECTS
         skapar och appendar en li under parent "#country_${citys countryID} > ul" med klassen:
         "selected"
-        och id:
-        id av city
+        och dataset id:
+        city's id
         och textContent:
         namnet på city:n.
 
