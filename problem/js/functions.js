@@ -86,7 +86,6 @@ function add_group_toggling (filter_container_dom) {
     filter_container_dom.parentElement.addEventListener("click", toggleGroups);
   
     function toggleGroups(event) {
-
         if (filter_container_dom.firstChild.classList.value === "selected"){
           for (let i = 0; i < filter_container_dom.children.length; i++) {
             filter_container_dom.children[i].classList.remove("selected");
@@ -322,6 +321,25 @@ function create_programme (programme) {
     mainDiv.append(uniInfo);
     mainDiv.append(seeMore);
     mainDiv.append(sunIndex);
+    
+    // innehållet i programme boxarna
+    uniInfo.innerHTML = 
+    `
+    <p><b>${programme.name}</b></p> 
+    <p>${UNIVERSITIES[programme.universityID].name}</p> 
+    <p>
+      ${CITIES[UNIVERSITIES[programme.universityID].cityID].name}, 
+      ${COUNTRIES[CITIES[UNIVERSITIES[programme.universityID].cityID].countryID].name}  
+    </p>
+    <p>${LEVELS[programme.levelID - 1].name}, ${SUBJECTS[programme.subjectID].name}, ${LANGUAGES[programme.languageID].name}</p>
+    `
+
+    sunIndex.innerHTML = 
+    `
+    <p>${CITIES[UNIVERSITIES[programme.universityID].cityID].name}, sun-index: ${CITIES[UNIVERSITIES[programme.universityID].cityID].sun} (${percenter(CITIES[UNIVERSITIES[programme.universityID].cityID].sun, 365)}%)</p>
+    `
+
+    mainDiv.style.backgroundImage = `url(media/geo_images/${array_random_element (CITIES[UNIVERSITIES[programme.universityID].cityID].imagesNormal)})`
 
     // see more funktionalitet
     seeMore.addEventListener("click", seeLess);
@@ -334,58 +352,7 @@ function create_programme (programme) {
       <p>Exchange ratio: ${programme.exchangeStudents}/${programme.localStudents}</p>
       `
     }
-    
-  // innehållet i programme boxarna
 
-  // det här ser absolut inte bra ut men det funkar
-  // försök gärna komma på en bättre lösning senare
-  // lite bättre?
-    for (const university of UNIVERSITIES) {
-      if ((university.id === programme.universityID)) {
-        for (const city of CITIES) {
-          if (city.id === university.cityID) {
-            for (const country of COUNTRIES) {
-              if (country.id === city.countryID) {
-                uniInfo.innerHTML = 
-                `
-                <p><b>${programme.name}</b></p>
-                <p>${university.name}</p>
-                <p>${city.name}, ${country.name}</p>
-                `
-            
-                sunIndex.innerHTML = 
-                `
-                <p>${city.name}, sun-index: ${city.sun} (${percenter(city.sun, 365)}%)</p>
-                `
-            
-                mainDiv.style.backgroundImage = `url(media/geo_images/${array_random_element (city.imagesNormal)})`
-              }
-            }
-          }
-        }
-      }
-    }
-
-    let levelSubjectLanguage = document.createElement("p");
-    uniInfo.append(levelSubjectLanguage);
-
-    for (const level of LEVELS) {
-      if (level.id === programme.levelID) {
-        levelSubjectLanguage.append(document.createElement.textContent = `${level.name}, `)
-      }
-    }
-
-    for (const subject of SUBJECTS) {
-      if (subject.id === programme.subjectID) {
-        levelSubjectLanguage.append(document.createElement.textContent = `${subject.name}, ` )
-      }
-    }
-
-    for (const language of LANGUAGES) {
-      if (language.id === programme.languageID) {
-        levelSubjectLanguage.append(document.createElement.textContent = `${language.name}` )
-      }
-    }
 }
 
 // G
